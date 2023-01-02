@@ -1,0 +1,28 @@
+{
+	"name": "recipe-roundups-block",
+	"version": "0.1.0",
+	"description": "Show Recipe Block from selected custom type recipe post",
+	"author": "WPZOOM",
+	"license": "GPL-2.0-or-later",
+	"main": "dist/recipe-roundups-block.js",
+	"scripts": {
+		"start": "wp-scripts start  --config .dev/config/webpack.config.js --progress",
+		"build": "wp-scripts build  --config .dev/config/webpack.config.js",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"dependencies": {
+		"@wordpress/block-editor": "^8.0.5",
+		"@wordpress/blocks": "^11.1.4",
+		"@wordpress/i18n": "^4.2.4",
+		"react": "^16.8.6",
+		"react-dom": "^16.8.6",
+		"react-multivalue-text-input": "^2.1.0"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^19.2.2",
+		"downshift": "^6.0.6"
+	}
+}

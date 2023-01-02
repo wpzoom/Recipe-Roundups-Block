@@ -1,0 +1,133 @@
+ul.wpzoom-recipe-roundups-list {
+    margin: 30px auto !important;
+    padding: 0 !important;
+}
+
+ul.wpzoom-recipe-roundups-list>li {
+    list-style: none;
+    padding: 25px;
+    display: block;
+    background: #FFFFFF;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.06);
+}
+
+.wpzoom-recipe-card-roundups {
+    display: grid;
+    grid-template-areas: "media content";
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+}
+
+.wpzoom-recipe-card-roundups div {
+    display: block;
+}
+
+.wpzoom-recipe-roundups-media {
+    margin-right: 20px;
+    grid-area: media;
+    position: relative;
+}
+
+.wpzoom-recipe-roundups-media>a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    height: 100%;
+    width: 100%;
+    border: none;
+}
+
+.wpzoom-recipe-roundups-media img {
+    border-radius: 4px;
+    height: auto !important;
+}
+
+.wpzoom-recipe-roundups-content {
+    grid-area: content;
+}
+
+.wpzoom-recipe-roundups-content a,
+.wpzoom-recipe-roundups-content .wpzoom-recipe-roundups-title {
+    margin: 0;
+    text-decoration: none !important;
+}
+
+.wpzoom-recipe-roundups-content .wpzoom-recipe-roundups-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+
+.wpzoom-recipe-roundups-content .wpzoom-recipe-roundups-title a {
+    color: #111;
+    font-weight: 600;
+}
+
+.wpzoom-recipe-roundups-content .wpzoom-recipe-roundups-title a:hover {
+    color: #555;
+    opacity: .7;
+}
+
+.wpzoom-recipe-roundups-info,
+.wpzoom-recipe-roundups-footer {
+    display: flex !important;
+    align-items: center;
+}
+
+.wpzoom-recipe-roundups-info {
+    margin-bottom: 10px;
+}
+
+.wpzoom-recipe-roundups-footer {
+    margin-top: 10px;
+}
+
+.wpzoom-recipe-roundups-info span,
+.wpzoom-recipe-roundups-footer span {
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.wpzoom-recipe-roundups-footer .wpzoom-recipe-roundups-ratings .dashicons {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    padding-right: 4px;
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.wpzoom-recipe-roundups-text p {
+    font-size: 14px;
+    margin-bottom: 10px !important;
+}
+
+@media screen and (max-width: 480px) {
+
+    .wpzoom-recipe-card-roundups {
+        grid-template-columns: 1fr 2fr;
+    }
+
+    .wpzoom-recipe-roundups-info, .wpzoom-recipe-roundups-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .wpzoom-recipe-roundups-content .wpzoom-recipe-roundups-title {
+        font-size: 16px;
+    }
+
+    .wpzoom-recipe-roundups-info span, .wpzoom-recipe-roundups-footer span {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 3px;
+        font-size: 14px;
+    }
+}

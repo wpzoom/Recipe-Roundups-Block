@@ -1,0 +1,48 @@
+@keyframes Select-animation-spin {
+	to {
+		transform: rotate(1turn);
+	}
+}
+.gutenbee-icon-block-select-value {
+	display: flex;
+	align-items: center;
+}
+
+@import "style";
+
+.wpzoom-recipe-roundups-content .wpzoom-recipe-roundups-title {
+    cursor: pointer;
+}
+
+.wpzoom-recipe-roundups-media a,
+.wpzoom-recipe-roundups-content .wpzoom-recipe-roundups-title a {
+    pointer-events: none;
+}
+
+.multiple-value-text-input input,
+.multiple-value-text-input label {
+	width: 100%;
+}
+.multiple-value-text-input .multiple-value-text-input-item {
+	display: block;
+	padding: 10px 20px 10px 10px;
+	border:1px solid #eee;
+	border-radius: 5px;
+	margin-bottom:10px;
+	position: relative;
+    word-break: break-all;
+    font-family: monospace;
+	background: none !important;
+}
+
+.multiple-value-text-input .multiple-value-text-input-item > span {
+    background: #f2fcf0 !important;
+}
+
+.multiple-value-text-input span.multiple-value-text-input-item-button {
+	cursor: pointer;
+	position:absolute;
+	top:33%;
+	right:10px;
+	background: none !important;
+}
