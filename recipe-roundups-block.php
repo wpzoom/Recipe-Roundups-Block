@@ -219,12 +219,17 @@ class WPZOOM_Recipe_Roundups_Block {
 				$jsons = $validJsons = array();
 
 				for ( $i = 0; $i < $count; $i++ ) {
-						$jsons[] = trim( $jsonScripts->item($i)->nodeValue );
+					$jsons[] = trim( $jsonScripts->item($i)->nodeValue );
 				}
 
-				foreach( $jsons as $json ) {
+				$decodedJson = $decoded = array();
 
+				foreach( $jsons as $json ) {
+					
+					$json = preg_replace( '/[\x00-\x1F\x80-\xFF]/', '', $json );
+					
 					$decodedJson = json_decode( $json, true );
+
 					$decoded = $this->search_array( $decodedJson, '@type', 'Recipe' );
 					$decoded = isset( $decoded[0] ) ? $decoded[0] : $decoded;
 
@@ -260,10 +265,33 @@ class WPZOOM_Recipe_Roundups_Block {
 							$cuisine = is_array( $decoded['recipeCuisine'] ) ? implode( ', ', $decoded['recipeCuisine'] ) : $decoded['recipeCuisine'];
 						}
 
-						if( isset( $decoded['image'] ) && is_array( $decoded['image'] ) ) {
-							$image = isset( $decoded['image']['url'] ) ? $decoded['image']['url'] : $decoded['image'][0];
-						}						
+						if( isset( $decoded['image'] ) ) {
+							if( is_array( $decoded['image'] ) ) {
+								$image = isset( $decoded['image']['url'] ) ? $decoded['image']['url'] : $decoded['image'][0];
+							}
+							else {
+								$image = $decoded['image'];
+							}
+						}
 
+						if( !empty( $image ) ) {
+							$image_url_scheme = parse_url( $image, PHP_URL_SCHEME );
+							if ( empty( $image_url_scheme ) ) {
+								$host = parse_url( $external_url, PHP_URL_HOST );
+								$image = $host . $image;
+							}
+						}
+
+						$ratingValue = $reviewCount = '';
+						$ratingValue = isset( $decoded['aggregateRating']['ratingValue'] ) ? $decoded['aggregateRating']['ratingValue'] : '';
+						
+						if( isset( $decoded['aggregateRating']['reviewCount'] ) ) {
+							$reviewCount = $decoded['aggregateRating']['reviewCount'];
+						}
+						elseif( isset( $decoded['aggregateRating']['ratingCount'] ) ) {
+							$reviewCount = $decoded['aggregateRating']['ratingCount'];
+						}
+						
 						$recipes[] = array(
 							'recipeId'   => esc_url( $external_url ),
 							'recipeUrl'  => esc_url( $external_url ),
@@ -274,8 +302,8 @@ class WPZOOM_Recipe_Roundups_Block {
 							'cuisine'    => $cuisine,
 							'totalTime'  => array( 'value' => $total_time, 'unit'  => null ),
 							'aggregateRating' => array(
-								'ratingValue' => isset( $decoded['aggregateRating']['ratingValue'] ) ? $decoded['aggregateRating']['ratingValue'] : '',
-								'reviewCount' => isset( $decoded['aggregateRating']['reviewCount'] ) ? $decoded['aggregateRating']['reviewCount'] : '',
+								'ratingValue' => $ratingValue,
+								'reviewCount' => $reviewCount
 							),
 						);
 					}
